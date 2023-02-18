@@ -18,7 +18,18 @@ export const navItems = ['Home', 'About me', 'Star Wars', 'Contact'];
 
 export const baseUrl = `https://sw-info-api.herokuapp.com`;
 
-
+// test()
+//
+// function test() {
+//     fetch(`${baseUrl}/v1/planets`)
+//         .then(r => r.json())
+//         .then(a => a.map(i => {
+//             this.setState()
+//         }))
+//         .then(d => console.log(d.map(i => i.name)))
+//
+//
+// }
 
 // export async function returnText() {
 //     let text1 = getTExt();
