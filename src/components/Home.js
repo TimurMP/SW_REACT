@@ -4,6 +4,7 @@ import DreamTeam from "./DreamTeam";
 import FarGalaxy from "./FarGalaxy";
 
 const Home = () => {
+    console.log('Render Home Functional')
     return (
         <main className="clearfix">
             <Hero/>

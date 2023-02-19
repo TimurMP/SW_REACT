@@ -1,8 +1,11 @@
 import React from 'react';
+import styles from '../css/farGalaxy.module.css'
+
 
 const StarWars = () => {
+        console.log('Render SW Functional')
     return (
-        <div>
+        <div className={styles.farGalaxy}>
             Star Wars is an American epic space opera[1] multimedia franchise created by George Lucas, which began with
             the eponymous 1977 film[b] and quickly became a worldwide pop culture phenomenon. The franchise has been
             expanded into various films and other media, including television series, video games, novels, comic books,

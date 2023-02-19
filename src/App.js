@@ -18,6 +18,7 @@ class App extends React.Component {
     }
 
     render() {
+        console.log('Render APP')
         return (
             <div className="container-fluid">
                 <Header changePage={this.changePage}/>

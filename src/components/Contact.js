@@ -20,6 +20,7 @@ class Contact extends Component {
 
 
     render() {
+        console.log('Render Contact Class')
         if (this.state.isLoading) {
             return (
                 <div className='spinner-border text-primary'></div>

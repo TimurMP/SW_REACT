@@ -6,6 +6,7 @@ import Contact from "./Contact";
 import {navItems} from "../utils/constants";
 
 const Main = ({currentPage}) => {
+    console.log('Render Main functional')
     switch (currentPage) {
         case navItems[1]:
             return <AboutMe/>;

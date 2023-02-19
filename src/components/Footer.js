@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Footer = () => {
+    console.log('Render footer functional')
     return (
         <footer className="row align-items-center m-0">
             <div className="btn btn-danger col-2 offset-2">
