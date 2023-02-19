@@ -10,27 +10,52 @@ class AboutMe extends React.Component {
 
     componentDidMount() {
         // const luke = ['name', 'birth_year', 'img'];
-        const birth_year = localStorage.getItem('birth_year');
-        const img = localStorage.getItem('img');
-        const name = localStorage.getItem('name');
-        if (birth_year && img && name) {
-            this.setState({img})
-            this.setState({birth_year})
-            this.setState({name})
+        // const birth_year = localStorage.getItem('birth_year');
+        // const img = localStorage.getItem('img');
+        // const name = localStorage.getItem('name');
+        const ttl = localStorage.getItem('ttl');
+        const now = Date.now();
+        console.log(ttl);
+        console.log(now);
+
+        // if (now < (+ttl)){
+        //
+        // }
+        const luke = localStorage.getItem('luke');
+        if (luke && now < (+ttl)) {
+            // const ll = JSON.parse(luke)
+            // console.log(ll)
+            this.setState(JSON.parse(luke))
+            // this.setState({birth_year})
+            // this.setState({name})
         } else {
 
             fetch(`${baseUrl}/v1/peoples/1`)
                 .then(r => r.json())
                 .then(d => {
+                    const date = new Date(Date.now());
+                    // const ttt = Date.now()
+                    const ttl = date.setDate(date.getDate()+30);
+                    // const ttl = date.setMinutes(date.getMinutes()+3);
+                    // console.log(ttl)
+                    // console.log(ttt)
                         this.setState({
-                            name: d.name,
-                            birth_year: d.birth_year,
-                            img: `${baseUrl}/${d.image}`
+                            luke: {
+                                name: d.name,
+                                birth_year: d.birth_year,
+                                img: `${baseUrl}/${d.image}`
+                            }
+                        }, () => {
+                            const luke = JSON.stringify({'luke': this.state.luke})
+                            localStorage.setItem('luke', luke);
+                            localStorage.setItem('ttl', JSON.stringify(ttl))
+
 
                         })
-                    localStorage.setItem('name', d.name);
-                    localStorage.setItem('birth_year', d.birth_year);
-                    localStorage.setItem('img', `${baseUrl}/${d.image}`);
+
+                        // localStorage.setItem('name', d.name);
+                        // localStorage.setItem('birth_year', d.birth_year);
+                        // localStorage.setItem('img', `${baseUrl}/${d.image}`);
                     }
                 );
 
@@ -41,14 +66,17 @@ class AboutMe extends React.Component {
     }
 
     render() {
-        console.log('Render AboutMe Class')
-        return (
-            <div>
-                {this.state.name}<br/>
-                {this.state.birth_year}<br/>
-                <img src={this.state.img} alt='sw hero'/>
-            </div>
-        );
+        if (this.state.luke) {
+            return (
+                <div>
+                    {this.state.luke.name}<br/>
+                    {this.state.luke.birth_year}<br/>
+                    <img src={this.state.luke.img} alt='sw hero'/>
+                </div>
+            );
+
+        }
+
     }
 
 }

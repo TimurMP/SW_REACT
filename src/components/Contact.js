@@ -11,11 +11,34 @@ class Contact extends Component {
     }
 
     componentDidMount() {
-        fetch(`${baseUrl}/v1/planets`)
-            .then(r => r.json())
+        const ttl = localStorage.getItem('ttl_planets');
+        const now = Date.now();
 
-            .then(a => a.map((p) => p.name))
-            .then(p => this.setState({planets: p, isLoading: false}))
+        const planets = localStorage.getItem('planets');
+
+        if (planets && now < (+ttl)){
+            this.setState(JSON.parse(planets))
+            this.setState({isLoading: false})
+        }else {
+            fetch(`${baseUrl}/v1/planets`)
+                .then(r => r.json())
+
+                .then(a => a.map((p) => p.name))
+                .then(p => {
+                    const date = new Date(Date.now());
+                    const ttl = date.setDate(date.getDate()+30);
+                    this.setState({planets: p, isLoading: false}
+                        , () => {
+                            const planets = JSON.stringify({'planets': p})
+                            localStorage.setItem('planets', planets)
+                            localStorage.setItem('ttl_planets', JSON.stringify(ttl))
+                        } )
+
+                })
+
+        }
+
+
     }
 
 

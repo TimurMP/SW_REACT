@@ -29,13 +29,12 @@ class FarGalaxy extends Component {
             fetch(returnMovieTextUrl())
                 .then(r => r.json())
                 .then(d => {
-                    this.setState({
-                        opening_crawl: d.opening_crawl
-                    });
-                    sessionStorage.setItem('opening_crawl', d.opening_crawl);
-                }
-
-        )
+                        this.setState({
+                            opening_crawl: d.opening_crawl
+                        });
+                        sessionStorage.setItem('opening_crawl', d.opening_crawl);
+                    }
+                )
 
 
         }
